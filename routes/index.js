@@ -17,7 +17,17 @@ router.get('/products/:category', (req, res, ) => {
 
 });
 
+router.get('/products/id/:category', (req, res, ) => {
+  ProductsInstance.findProductById(req, res);
+
+});
+router.get('/products/price/:price', (req, res, ) => {
+  ProductsInstance.findProductByRank(req, res);
+
+});
 
 
 
 module.exports = router;
+
+
