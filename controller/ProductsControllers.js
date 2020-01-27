@@ -2,6 +2,7 @@ class ProductsControllers {
     constructor() {
         this.productCounter = 0;
         this.products = []
+
     }
 
     getProducts(req, res) {
@@ -71,6 +72,23 @@ class ProductsControllers {
         }
 
         return res.sendStatus(404)
+
+
+    }
+    modifyProduct(req, res) {
+        const body = req.body;
+        const id = req.params.id
+
+        this.products.map((elem) => {
+            if (elem.id == id) {
+                const arrkeys = Object.keys(body)
+                arrkeys.map((key) => {
+                    console.log(key)
+                })
+            }
+        })
+        return res.sendStatus(404)
+
     }
 
 }
