@@ -26,11 +26,10 @@ router.get('/products/price/:price', (req, res, ) => {
   ProductsInstance.findProductByRank(req, res);
 
 });
-routes.put('/products/:id', (req, res) => {
+
+router.put('/products/:id', (req, res) => {
   ProductsInstance.modifyProduct(req, res)
-
 })
-
 
 module.exports = router;
 

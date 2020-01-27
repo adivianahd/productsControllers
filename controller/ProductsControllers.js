@@ -76,18 +76,19 @@ class ProductsControllers {
 
     }
     modifyProduct(req, res) {
-        const body = req.body;
+        const body = req.body
         const id = req.params.id
 
         this.products.map((elem) => {
             if (elem.id == id) {
-                const arrkeys = Object.keys(body)
-                arrkeys.map((key) => {
-                    console.log(key)
+                const arrKeys = Object.keys(body)
+                arrKeys.map((key) => {
+                    elem[key] = body[key]
                 })
+
+                return res.json(elem)
             }
         })
-        return res.sendStatus(404)
 
     }
 
