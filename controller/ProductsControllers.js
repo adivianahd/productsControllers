@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 class ProductsControllers {
     constructor() {
         this.productCounter = 0;
@@ -28,8 +30,8 @@ class ProductsControllers {
 
     findProductByCategory(req, res) {
         const category = req.params.category
-
         let productFound = []
+
         for (let i = 0; i < this.products.length; i++) {
             if (category === this.products[i].category) {
                 productFound.push(this.products[i])
@@ -45,6 +47,7 @@ class ProductsControllers {
 
     findProductById(req, res) {
         let id = req.params.id
+
         this.products.map((elem, index) => {
             if (elem.id == id) {
                 return res.json(elem)
@@ -60,15 +63,15 @@ class ProductsControllers {
             return res.sendStatus(404)
         }
 
-        let productFound = []
+        let productByRank = []
         for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].price >= ranks[0] &&
                 this.products[i].price <= ranks[1]) {
-                productFound.push(this.products[i])
+                productByRank.push(this.products[i])
             }
         }
-        if (productFound.length) {
-            return res.json(productFound)
+        if (productByRank.length) {
+            return res.json(productByRank)
         }
 
         return res.sendStatus(404)
@@ -88,6 +91,19 @@ class ProductsControllers {
 
                 return res.json(elem)
             }
+        })
+    }
+
+
+    deleteProduct(req, res) {
+        const id = req.params.id
+
+        this.products.map((elem, index) => {
+            if (elem.id == id) {
+                this.products.splice(index, 1)
+                return res.sendStatus(200)
+            }
+
         })
 
     }
